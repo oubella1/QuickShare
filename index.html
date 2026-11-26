@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QuickShare</title>
+  <link rel="stylesheet" href="src/styles.css">
+  <script defer src="src/transfer.js"></script>
+  <script defer src="src/app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-content">
+      <strong>QuickShare</strong>
+      <button id="theme" type="button" class="secondary-button"></button>
+    </div>
+  </header>
+
+  <main>
+    <h1>Share files</h1>
+    <p class="muted intro">Choose files to send or enter a six-digit code to receive.</p>
+    <div class="layout">
+      <section class="panel" aria-label="File sharing">
+        <div class="tab-list" role="group" aria-label="Transfer direction">
+          <button id="send" type="button" aria-pressed="true">Send files</button>
+          <button id="receive" type="button" aria-pressed="false">Receive files</button>
+        </div>
+        <form id="sharing">
+          <div id="send-fields">
+            <div id="drop-zone" class="drop-zone">
+              <strong>Drop your files here</strong>
+              <p class="muted">or choose them from your device</p>
+              <button id="browse" type="button" class="secondary-button">Browse files</button>
+              <input id="files" type="file" multiple hidden>
+            </div>
+            <ul id="file-list" aria-label="Selected files" hidden></ul>
+          </div>
+          <div id="receive-fields" class="receive-box" hidden>
+            <label for="receive-code"><strong>Six-digit code</strong></label>
+            <p class="muted" id="receive-help">Enter the code from the sender.</p>
+            <input id="receive-code" class="code-input" type="text" inputmode="numeric"
+              autocomplete="off" placeholder="000000" aria-describedby="receive-help">
+          </div>
+          <button id="submit" class="primary-button" type="submit" disabled>Create pairing code</button>
+          <p id="notice" class="muted" role="status"></p>
+        </form>
+      </section>
+      <aside>
+        <section class="panel">
+          <h2>Pairing code</h2>
+          <p id="pair-code" class="pair-code" hidden></p>
+          <p id="pair-hint" class="muted">Add files to create a six-digit code.</p>
+        </section>
+        <section class="panel">
+          <div class="status-heading">
+            <h2>Transfer status</h2>
+            <span id="connection" class="status-pill" role="status">Disconnected</span>
+          </div>
+          <label class="progress-label muted" for="transfer-progress">
+            <span id="phase">Waiting to start</span>
+            <span id="percent">0%</span>
+          </label>
+          <progress id="transfer-progress" max="100" value="0"></progress>
+        </section>
+      </aside>
+    </div>
+  </main>
+</body>
+</html>
+
